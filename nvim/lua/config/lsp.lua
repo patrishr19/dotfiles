@@ -54,7 +54,7 @@ vim.lsp.config['intelephense'] = {
 -- C / C++
 vim.lsp.config['clangd'] = {
     cmd = { 'clangd' },
-    filetypes = { 'c', 'cpp' },
+    filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
     root_markers = { 'compile_commands.json', 'Makefile', '.git' },
     capabilities = caps,
 }
