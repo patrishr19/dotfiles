@@ -22,6 +22,6 @@ bold_italic_font Iosevka Term Bold Italic
 
 
 # BEGIN_KITTY_THEME
-# One Dark
+# Gruvbox Dark
 include current-theme.conf
 # END_KITTY_THEME

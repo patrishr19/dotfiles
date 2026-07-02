@@ -7,15 +7,15 @@ return {
 	    install_dir = vim.fn.stdpath('data') .. '/site',
 	})
 
-	require('nvim-treesitter').install({ 'lua', 'c', 'php', 'markdown', 'javascript', 'python', 'blade', 'css', 'html'})
+	require('nvim-treesitter').install({ 'lua', 'c', 'php', 'markdown', 'javascript', 'python', 'blade', 'css', 'html', 'fsharp', 'cmake'})
 
 	vim.api.nvim_create_autocmd('FileType', {
-	    pattern = { 'lua', 'c', 'javascript', 'php', 'markdown', 'python' },
+	    pattern = { 'lua', 'c', 'javascript', 'php', 'markdown', 'python', 'fsharp', 'cmake' },
 	    callback = function() vim.treesitter.start() end,
 	})
 
 	vim.api.nvim_create_autocmd('FileType', {
-	    pattern = { 'lua', 'c', 'javascript', 'php', 'markdown', 'python' },
+	    pattern = { 'lua', 'c', 'javascript', 'php', 'markdown', 'python', 'fsharp', 'cmake' },
 	    callback = function()
 		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 	    end,

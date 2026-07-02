@@ -18,3 +18,4 @@ vim.keymap.set("n", "<leader>t", "<cmd>split | terminal<cr>")
 vim.keymap.set("n", "<leader>T", "<cmd>vsplit | terminal<cr>")
 
 
+
