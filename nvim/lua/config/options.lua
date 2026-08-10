@@ -6,6 +6,7 @@ vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
 vim.env.PATH = vim.env.PATH .. ':' .. vim.fn.expand('~/.local/bin')
 vim.opt.autochdir = false
+vim.opt.cmdheight = 1
 
 
 vim.filetype.add({

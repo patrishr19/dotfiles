@@ -1,0 +1,8 @@
+* {
+  background: none;
+  border: none;
+}
+#window{
+    background: rgba(255, 255, 255, .9);
+    border: 2px solid black;
+}

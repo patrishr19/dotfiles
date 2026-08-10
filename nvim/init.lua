@@ -1,6 +1,6 @@
 require('config.options')
 require('config.keybinds')
 require('config.lazy')
-require('onedark').load()
 
+vim.o.exrc = true
 
