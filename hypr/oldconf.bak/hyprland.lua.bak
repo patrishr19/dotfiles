@@ -1,0 +1,66 @@
+require("autostart")
+require("monitors")
+require("programs")
+require("environment")
+require("layouts")
+require("animations")
+require("rules")
+require("input")
+require("binds")
+
+hl.config({
+    general = {
+        gaps_in  = 5,
+        gaps_out = 10,
+
+        border_size = 2,
+
+	col = {
+	    -- active_border = { colors = {"rgba(00b4ffdd)", "rgba(00fff0dd)"}, angle = 45 },
+	    active_border = "rgba(00b4ffdd)",
+	    inactive_border = "rgba(595959ff)"
+	},
+
+        resize_on_border = false,
+
+        allow_tearing = false,
+
+        layout = "dwindle",
+    },
+
+    decoration = {
+        rounding       = 20,
+        rounding_power = 2,
+
+        active_opacity   = .98,
+        inactive_opacity = .88,
+
+	shadow = {
+	      enabled = true,
+	      range = 4,
+	      render_power = 3,
+	      color = 0xee1a1a1a,
+	},
+
+        blur = {
+            enabled   = true,
+            size      = 3,
+            passes    = 2,
+            vibrancy  = 0.16,
+        },
+    },
+
+    animations = {
+        enabled = true,
+    },
+
+    misc = {
+        force_default_wallpaper = 1,
+        disable_hyprland_logo   = true,
+    },
+
+    xwayland = {
+	force_zero_scaling = true
+    },
+})
+

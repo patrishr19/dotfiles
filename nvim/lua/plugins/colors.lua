@@ -1,12 +1,12 @@
--- local function enable_transparency()
-    -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
--- end
+local function enable_transparency()
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+end
 -- return {
 --     {
 -- 	"folke/tokyonight.nvim",
@@ -68,12 +68,14 @@ return {{
     config = function()
         require('nordic').setup({
             transparent = {
-                bg = true,
-                float = true,
+                bg = false,
+                float = false,
             },
         })
         require('nordic').load()
 	vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+	enable_transparency()
+
     end,
 },
 {
