@@ -21,7 +21,7 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.enable({
     "lua_ls",
-    "bash-language-server",
+    "bashls",
     "clangd",
     "gopls",
     "intelephense",
@@ -29,6 +29,6 @@ vim.lsp.enable({
     "omnisharp",
     "pyright",
     "sqls",
-    "typescript-language-server",
-    "rust-analyzer",
+    "ts_ls",
+    "rust_analyzer",
 })

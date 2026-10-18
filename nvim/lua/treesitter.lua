@@ -10,6 +10,7 @@ local ensure_installed = {
 
 treesitter.install(ensure_installed)
 
+
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
 	callback = function(args)
@@ -28,4 +29,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		pcall(vim.treesitter.start, buf, lang)
 	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "php",
+    callback = function(args)
+        vim.schedule(function()
+            if vim.api.nvim_buf_is_valid(args.buf) then
+                vim.bo[args.buf].syntax = "php"
+            end
+        end)
+    end,
 })

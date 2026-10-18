@@ -14,7 +14,8 @@ vim.pack.add({
     "https://github.com/brenoprata10/nvim-highlight-colors",
     "https://github.com/akinsho/bufferline.nvim",
     "https://github.com/nvim-tree/nvim-web-devicons",
-
+    "https://github.com/folke/tokyonight.nvim.git",
+    "https://github.com/nvim-tree/nvim-tree.lua",
 })
 
 --mini
@@ -77,7 +78,6 @@ MiniCompletion.setup({
         auto_setup = true,
     }
 })
-
 -- mini snippets
 local MiniSnippets = require("mini.snippets")
 MiniSnippets.setup({
@@ -104,7 +104,7 @@ AutoPairs.setup()
 local LuaLines = require("lualine")
 LuaLines.setup({
     options = {
-        theme = "onedark",
+        theme = "tokyonight",
         section_separators = "",
         component_separators = "",
     },
@@ -146,13 +146,31 @@ require('nvim-web-devicons').setup({
 })
 
 
+
+
 vim.keymap.set("n", "<TAB>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer tab" })
 vim.keymap.set("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer tab" })
 vim.keymap.set("n", "<leader>w", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 vim.keymap.set("n", "<leader>tn", "<cmd>enew<CR>", { desc = "Open new buffer tab" })
 
 require("nvim-highlight-colors").setup()
-require("bufferline").setup()
+-- colorscheme / theme
+vim.cmd("colorscheme tokyonight-moon")
+
+require("bufferline").setup({
+    options = {
+        mode = "buffers",
+    },
+})
+
+require("nvim-tree").setup({
+    actions = {
+        open_file = {
+            quit_on_open = true,
+        },
+    },
+})
+
 require("lazygit")
 require("neocord")
 require("treesitter")

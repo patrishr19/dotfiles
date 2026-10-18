@@ -4,5 +4,5 @@ require("keymaps")
 require("commands")
 require("pack")
 
-vim.cmd("colorscheme moonfly")
+-- vim.cmd("colorscheme tokyonight-moon")
 

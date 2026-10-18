@@ -25,9 +25,10 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "makes file executable" })
 vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart config :restart)" })
 
-vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>cd", ":NvimTreeToggle<CR>", { desc = "Toggle nvim file tree " })
 
 vim.keymap.set("n", "<leader>u", function()
     vim.cmd.packadd("nvim.undotree")
     require("undotree").open()
 end, { desc = "Toggle Builtin Undotree" })
+
