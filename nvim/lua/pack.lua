@@ -12,27 +12,28 @@ vim.pack.add({
     "https://github.com/IogaMaster/neocord",
     "https://github.com/tpope/vim-fugitive",
     "https://github.com/brenoprata10/nvim-highlight-colors",
-    "https://github.com/akinsho/bufferline.nvim",
+    -- "https://github.com/akinsho/bufferline.nvim",
+    "https://github.com/romgrk/barbar.nvim",
     "https://github.com/nvim-tree/nvim-web-devicons",
     "https://github.com/folke/tokyonight.nvim.git",
     "https://github.com/nvim-tree/nvim-tree.lua",
 })
 
 --mini
-local MiniFiles = require("mini.files")
-MiniFiles.setup({
-    mappings = {
-        go_in = "<CR>",
-        go_in_plus = "L",
-        go_out = "_",
-        go_out_plus = "H",
-    },
-})
-vim.keymap.set("n", "-", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle mini file explorer" })
-vim.keymap.set("n", "<leader>-", function()
-    MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-    MiniFiles.reveal_cwd()
-end, { desc = "Toggle into currently opened file" })---- mini notify ----
+-- local MiniFiles = require("mini.files")
+-- MiniFiles.setup({
+--     mappings = {
+--         go_in = "<CR>",
+--         go_in_plus = "L",
+--         go_out = "_",
+--         go_out_plus = "H",
+--     },
+-- })
+-- vim.keymap.set("n", "-", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle mini file explorer" })
+-- vim.keymap.set("n", "<leader>-", function()
+--     MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+--     MiniFiles.reveal_cwd()
+-- end, { desc = "Toggle into currently opened file" })---- mini notify ----
 require("mini.notify").setup({
 	-- only show messages
     content = {
@@ -66,7 +67,15 @@ MiniExtra.setup()
 
 -- keymaps
 vim.keymap.set("n", "<leader>pf", function() MiniPick.builtin.files() end, { desc = "Mini File Picker" })
-vim.keymap.set("n", "<leader>ps", function() MiniPick.builtin.grep({ pattern = vim.fn.expand("<cword>") }) end, { desc = "Grep word/Search word" })
+vim.keymap.set('n', '<leader>ps', function()
+  -- If we are in nvim-tree, grab the proper working directory
+  local opts = {
+    source = {
+      cwd = vim.fn.getcwd()
+    }
+  }
+  MiniPick.builtin.grep_live(opts)
+end, { desc = "Grep text safely" })
 vim.keymap.set("n", "<leader>vh", function() MiniPick.builtin.help() end, { desc = "Mini Help" })
 
 vim.keymap.set("n", "<leader>xx", function() MiniExtra.pickers.diagnostic() end, { desc = "Mini Picker Diagnostics" })
@@ -129,13 +138,16 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 local SmearCursor = require("smear_cursor")
 SmearCursor.setup({
     options = {
-        stiffnes = 0.8,
+        stiffness = 0.8,                      -- 0.6      [0, 1]
         trailing_stiffness = 0.6,             -- 0.45     [0, 1]
         stiffness_insert_mode = 0.7,          -- 0.5      [0, 1]
         trailing_stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
         damping = 0.95,                       -- 0.85     [0, 1]
         damping_insert_mode = 0.95,           -- 0.9      [0, 1]
-        distance_stop_animating = 0.5,        -- 0.1      > 0
+        distance_stop_animating = 0.5,        -- 0.1      > 0    smear_between_buffers = true,
+        smear_between_neighbor_lines = true,
+        scroll_buffer_space = true,
+        smear_insert_mode = true,
     },
 })
 
@@ -146,22 +158,15 @@ require('nvim-web-devicons').setup({
 })
 
 
-
-
-vim.keymap.set("n", "<TAB>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer tab" })
-vim.keymap.set("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer tab" })
-vim.keymap.set("n", "<leader>w", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
-vim.keymap.set("n", "<leader>tn", "<cmd>enew<CR>", { desc = "Open new buffer tab" })
-
 require("nvim-highlight-colors").setup()
 -- colorscheme / theme
 vim.cmd("colorscheme tokyonight-moon")
 
-require("bufferline").setup({
-    options = {
-        mode = "buffers",
-    },
-})
+-- require("bufferline").setup({
+--     options = {
+--         mode = "buffers",
+--     },
+-- })
 
 require("nvim-tree").setup({
     actions = {
@@ -170,6 +175,17 @@ require("nvim-tree").setup({
         },
     },
 })
+
+local BarBar = require("barbar")
+BarBar.setup()
+
+vim.keymap.set("n", "<TAB>", "<cmd>BufferNext<CR>", { desc = "Next buffer tab" })
+vim.keymap.set("n", "<S-TAB>", "<cmd>BufferPrevious<CR>", { desc = "Previous buffer tab" })
+vim.keymap.set("n", "<leader><TAB>", "<cmd>BufferMoveNext<CR>", { desc = "Next buffer tab" })
+vim.keymap.set("n", "<leader><S-TAB>", "<cmd>BufferMovePrevious<CR>", { desc = "Previous buffer tab" })
+vim.keymap.set("n", "<leader>w", "<cmd>BufferClose<CR>", { desc = "Close current buffer" })
+vim.keymap.set("n", "<leader>tn", "<cmd>enew<CR>", { desc = "Open new buffer tab" })
+
 
 require("lazygit")
 require("neocord")
