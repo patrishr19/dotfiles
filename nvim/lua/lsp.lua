@@ -31,4 +31,5 @@ vim.lsp.enable({
     "sqls",
     "ts_ls",
     "rust_analyzer",
+    "tinymist",
 })

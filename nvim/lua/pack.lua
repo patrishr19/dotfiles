@@ -17,6 +17,9 @@ vim.pack.add({
     "https://github.com/nvim-tree/nvim-web-devicons",
     "https://github.com/folke/tokyonight.nvim.git",
     "https://github.com/nvim-tree/nvim-tree.lua",
+    "https://github.com/kaarmu/typst.vim",
+    -- "https://github.com/nvimdev/dashboard-nvim",
+    -- "https://github.com/folke/snacks.nvim",
 })
 
 --mini
